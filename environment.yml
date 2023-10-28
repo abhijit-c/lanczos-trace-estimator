@@ -1,0 +1,17 @@
+# =====================================================================================
+# Dependencies for the lanczos-trace-estimator package
+# =====================================================================================
+# Usage:
+#   $ conda env create -f environment.yml
+# or
+#   $ mamba env create -f environment.yml
+# =====================================================================================
+name: lanczos-trace-estimator
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - numpy
+  - scipy
+  - pytest
