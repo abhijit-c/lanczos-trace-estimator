@@ -1,3 +1,6 @@
+"""
+This file contains type aliases for the project.
+"""
 import numpy as np
 import scipy as sp
 

@@ -1,5 +1,7 @@
+"""
+Lanczos algorithm for tridiagonalization of a symmetric matrix
+"""
 import numpy as np
-from scipy.linalg import eigh_tridiagonal
 
 from notation import linear_operator
 
@@ -50,13 +52,3 @@ def lanczos(
         V[:, j + 2] = A @ V[:, j + 1] - beta[j + 1] * V[:, j]
         alpha[j + 1] = np.inner(V[:, j + 2], V[:, j + 1])
     return V[:, :-1], alpha, beta[1:]
-
-
-def fA_b(f, A, b, k, reorth=False):
-    V, alpha, beta = lanczos(A, b, k, reorth=reorth)
-    T = sps.diags([beta[1:k], alpha, beta[1:k]], [-1, 0, 1])
-    T = np.diag(alpha) + np.diag(beta[1:k], 1) + np.diag(beta[1:k], -1)
-    L, U = np.linalg.eigh(T)
-    ebeta = np.zeros(T.shape[0])
-    ebeta[0] = beta[0]
-    return np.linalg.multi_dot([V[:, :k], U, np.diag(f(L)), U.T, ebeta])
