@@ -40,36 +40,16 @@ def lanczos(
     alpha[0] = np.inner(V[:, 1], V[:, 0])
     for j in range(k - 1):
         V[:, j + 1] = V[:, j + 1] - alpha[j] * V[:, j]
-        if reorth:
+        if reorth:  # Full reorthogonalization, expensive
             Vj = V[:, :j]
             V[:, j + 1] -= np.dot(Vj, np.dot(Vj.T, V[:, j + 1]))
         beta[j + 1] = np.linalg.norm(V[:, j + 1])
         if np.isclose(beta[j + 1], 0.0):
-            break
+            return V[:, : j + 1], alpha[: j + 1], beta[1 : j + 1]
         V[:, j + 1] /= beta[j + 1]
         V[:, j + 2] = A @ V[:, j + 1] - beta[j + 1] * V[:, j]
         alpha[j + 1] = np.inner(V[:, j + 2], V[:, j + 1])
     return V[:, :-1], alpha, beta[1:]
-    # return V[:, : j + 1], alpha[: j + 1], beta[1 : j + 2]
-
-    # beta[0] = np.linalg.norm(b)
-    # vjm1 = 0.0
-    # v = b / beta[0]
-    # V[:, 0] = np.copy(v)
-    # for j in range(k):
-    #    w = A @ v - beta[j] * vjm1
-    #    vjm1 = np.copy(v)
-    #    # Orthogonalize
-    #    alpha[j] = np.inner(w, v)
-    #    w = w - alpha[j] * v
-    #    if reorth:
-    #        Vj = V[:, :j]
-    #        w -= np.dot(Vj, np.dot(Vj.T, w))
-    #    beta[j + 1] = np.linalg.norm(w)
-    #    v = w / beta[j + 1]
-    #    # Store current iterate
-    #    V[:, j + 1] = np.copy(v)
-    # return V, alpha, beta
 
 
 def fA_b(f, A, b, k, reorth=False):
