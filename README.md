@@ -1,6 +1,10 @@
 # lanczos-trace-estimator
 Matrix-free algorithms for computing $f(A)b$ or $Tr(f(A))$ via Lanczos iteration and Hutchinson. 
 
+See
+[https://abhijit-c.github.io/lanczos-trace-estimator/)(https://abhijit-c.github.io/lanczos-trace-estimator/)
+for the documentation.
+
 Ideas mainly derived from the following two papers.
 
 Musco, C., Musco, C., & Sidford, A. (2018). Stability of the Lanczos Method for Matrix
