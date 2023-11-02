@@ -15,3 +15,4 @@ dependencies:
   - numpy
   - scipy
   - pytest
+  - pdoc
