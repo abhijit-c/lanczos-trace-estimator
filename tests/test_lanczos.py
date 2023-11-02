@@ -1,11 +1,12 @@
 """
 Tests for the Lanczos algorithm.
 """
+
 import numpy as np
 
 import pytest
 
-from lanczos import lanczos
+from lanczos_trace_estimator import lanczos
 
 
 def test_dense_lanczos(

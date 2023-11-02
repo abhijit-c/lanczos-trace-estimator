@@ -1,12 +1,13 @@
 """
 Tests for the Lanczos algorithm.
 """
+
 import numpy as np
 from scipy.linalg import logm
 
 import pytest
 
-from trace_estimation import fA_b, hutchinson
+from lanczos_trace_estimator import fA_b, hutchinson
 
 
 def test_Ab(dense_symmetric_matrix, random_seed):
